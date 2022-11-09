@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"gitub.com/lxygwqf9527/rpc-demo/codec"
+	"gitub.com/lxygwqf9527/demo-rpc/codec"
 )
 
 type TestStruct struct {

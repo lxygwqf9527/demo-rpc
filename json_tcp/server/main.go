@@ -7,7 +7,7 @@ import (
 	"net/rpc"
 	"net/rpc/jsonrpc"
 
-	"gitub.com/lxygwqf9527/rpc-demo/json_tcp/service"
+	"gitub.com/lxygwqf9527/demo-rpc/json_tcp/service"
 )
 
 // 约束服务端接口的实现

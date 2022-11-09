@@ -1,4 +1,4 @@
-module gitub.com/lxygwqf9527/rpc-demo
+module gitub.com/lxygwqf9527/demo-rpc
 
 go 1.18
 

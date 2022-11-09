@@ -6,7 +6,7 @@ import (
 	"log"
 	"net"
 
-	"gitub.com/lxygwqf9527/rpc-demo/grpc/simple/server/pb"
+	"gitub.com/lxygwqf9527/demo-rpc/grpc/simple/server/pb"
 	"google.golang.org/grpc"
 )
 
