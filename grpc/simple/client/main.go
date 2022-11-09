@@ -5,8 +5,10 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/lxygwqf9527/demo-rpc/grpc/middleware/server"
 	"github.com/lxygwqf9527/demo-rpc/grpc/simple/server/pb"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/metadata"
 )
 
 func main() {
@@ -18,7 +20,11 @@ func main() {
 	client := pb.NewHelloServiceClient(conn)
 
 	// req <--> resp
-	resp, err := client.Hello(context.Background(), &pb.Request{Value: "alice"})
+	// 添加凭证信息
+
+	crendential := server.NewClientCredential("admin", "123456")
+	ctx := metadata.NewOutgoingContext(context.Background(), crendential)
+	resp, err := client.Hello(ctx, &pb.Request{Value: "alice"})
 	if err != nil {
 		panic(err)
 	}
