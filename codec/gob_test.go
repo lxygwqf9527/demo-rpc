@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/lxygwqf9527/demo-rpc/codec"
 	"github.com/stretchr/testify/assert"
-	"gitub.com/lxygwqf9527/demo-rpc/codec"
 )
 
 type TestStruct struct {

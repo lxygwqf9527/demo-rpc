@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/rpc"
 
-	"gitub.com/lxygwqf9527/demo-rpc/json_http/service"
+	"github.com/lxygwqf9527/demo-rpc/json_http/service"
 )
 
 // 约束服务端接口的实现

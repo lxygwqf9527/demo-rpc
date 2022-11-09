@@ -6,7 +6,7 @@ import (
 	"net"
 	"net/rpc"
 
-	"gitub.com/lxygwqf9527/demo-rpc/rpc_interface/service"
+	"github.com/lxygwqf9527/demo-rpc/rpc_interface/service"
 )
 
 // 约束服务端接口的实现

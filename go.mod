@@ -1,4 +1,4 @@
-module gitub.com/lxygwqf9527/demo-rpc
+module github.com/lxygwqf9527/demo-rpc
 
 go 1.18
 
