@@ -6,6 +6,7 @@ option go_package="github.com/lxygwqf9527/demo-rpc/grpc/simple/server/pb";
 // The HelloService service definition.
 service HelloService {
     rpc Hello (Request) returns (Response);
+    rpc Channel (stream Request) returns (stream Response) {};
 }
 
 message Request {
