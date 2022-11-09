@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package hello;
+option go_package="github.com/lxygwqf9527/demo-rpc/grpc/simple/server/pb";
+
+// The HelloService service definition.
+service HelloService {
+    rpc Hello (Request) returns (Response);
+}
+
+message Request {
+    string value = 1;
+}
+
+message Response {
+    string value = 1;
+}

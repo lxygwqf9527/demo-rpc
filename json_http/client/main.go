@@ -29,6 +29,10 @@ func (c *HelloServiceClient) Hello(request string, reponse *string) error {
 	return c.client.Call(fmt.Sprintf("%s.Hello", service.SERVICE_NAME), request, reponse)
 }
 
+func (c *HelloServiceClient) Calc(request *service.CalcRequest, response *int) error {
+	return c.client.Call(fmt.Sprintf("%s.Calc", service.SERVICE_NAME), request, response)
+}
+
 func main() {
 	// 创建客户端
 	c, err := NewHelloServiceClient("tcp", ":1234")
