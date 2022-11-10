@@ -24,14 +24,14 @@ func main() {
 
 	crendential := server.NewClientCredential("admin", "123456")
 	ctx := metadata.NewOutgoingContext(context.Background(), crendential)
-	resp, err := client.Hello(ctx, &pb.Request{Value: "alice"})
+	resp, err := client.Hello(ctx, &pb.Request{Value: "bob"})
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println(resp)
 
 	// stream
-	stream, err := client.Channel(context.Background())
+	stream, err := client.Channel(ctx)
 	if err != nil {
 		panic(err)
 	}

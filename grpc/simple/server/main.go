@@ -24,6 +24,7 @@ type HelloServiceServer struct {
 func (s *HelloServiceServer) Hello(ctx context.Context, req *pb.Request) (*pb.Response, error) {
 	return &pb.Response{Value: fmt.Sprintf("hello, %s", req.Value)}, nil
 }
+
 func (s *HelloServiceServer) Channel(stream pb.HelloService_ChannelServer) error {
 	for {
 		// 接收请求
@@ -55,8 +56,9 @@ func main() {
 	// srv HelloServiceServer
 
 	// 添加认证中间件
-	auth := server.NewAuthUnaryServerInterceptor()
-	server := grpc.NewServer(grpc.UnaryInterceptor(auth))
+	reqAuth := server.NewAuthUnaryServerInterceptor()
+	streamAuth := server.NewAuthStreamServerInterceptor()
+	server := grpc.NewServer(grpc.UnaryInterceptor(reqAuth), grpc.StreamInterceptor(streamAuth))
 	// 把实现类注册给GRPC Server
 	pb.RegisterHelloServiceServer(server, new(HelloServiceServer))
 

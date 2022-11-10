@@ -26,6 +26,10 @@ func NewAuthUnaryServerInterceptor() grpc.UnaryServerInterceptor {
 	return (&GrpcAuther{}).UnaryServerInterceptor
 }
 
+func NewAuthStreamServerInterceptor() grpc.StreamServerInterceptor {
+	return (&GrpcAuther{}).StreamServerInterceptor
+}
+
 type GrpcAuther struct {
 }
 
@@ -56,8 +60,16 @@ func (a *GrpcAuther) StreamServerInterceptor(
 	ss grpc.ServerStream,
 	info *grpc.StreamServerInfo,
 	handler grpc.StreamHandler) error {
+	md, ok := metadata.FromIncomingContext(ss.Context())
+	if !ok {
+		return fmt.Errorf("ctx is not an grpc incoming context")
 
-	return nil
+	}
+	clientId, clientSecret := a.getClientCredentialsFromMeta(md)
+	if err := a.validateServiceCredential(clientId, clientSecret); err != nil {
+		return err
+	}
+	return handler(srv, ss)
 }
 
 func (a *GrpcAuther) getClientCredentialsFromMeta(md metadata.MD) (
@@ -75,6 +87,7 @@ func (a *GrpcAuther) getClientCredentialsFromMeta(md metadata.MD) (
 
 func (a *GrpcAuther) validateServiceCredential(
 	clientId, clientSecret string) error {
+	fmt.Println(clientId, clientSecret)
 	if !(clientId == "admin" && clientSecret == "123456") {
 		// 返回一个认证错误，并结束RPC调用
 		return status.Errorf(codes.Unauthenticated, "client_id or client_secret not conrect")
