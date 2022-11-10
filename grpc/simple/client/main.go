@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/lxygwqf9527/demo-rpc/grpc/middleware/server"
 	"github.com/lxygwqf9527/demo-rpc/grpc/simple/server/pb"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/internal/metadata"
 	"google.golang.org/grpc/metadata"
 )
 
@@ -22,8 +22,10 @@ func main() {
 	// req <--> resp
 	// 添加凭证信息
 
-	crendential := server.NewClientCredential("admin", "123456")
-	ctx := metadata.NewOutgoingContext(context.Background(), crendential)
+	// crendential := server.NewClientCredential("admin", "123456")
+	// ctx := metadata.NewOutgoingContext(context.Background(), crendential)
+
+	ctx := metadata.NewOutgoingContext(context.Background(), metadata.Pairs())
 	resp, err := client.Hello(ctx, &pb.Request{Value: "bob"})
 	if err != nil {
 		panic(err)
