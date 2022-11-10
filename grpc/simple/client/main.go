@@ -5,14 +5,16 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/lxygwqf9527/demo-rpc/grpc/middleware/client"
 	"github.com/lxygwqf9527/demo-rpc/grpc/simple/server/pb"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 )
 
 func main() {
-
-	conn, err := grpc.DialContext(context.Background(), "localhost:1234", grpc.WithInsecure())
+	// 添加认证信息
+	crendential := client.NewAuthentication("admin", "123456")
+	conn, err := grpc.DialContext(context.Background(), "localhost:1234", grpc.WithInsecure(), grpc.WithPerRPCCredentials(crendential))
 	if err != nil {
 		panic(err)
 	}
