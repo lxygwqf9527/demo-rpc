@@ -7,7 +7,6 @@ import (
 
 	"github.com/lxygwqf9527/demo-rpc/grpc/simple/server/pb"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/internal/metadata"
 	"google.golang.org/grpc/metadata"
 )
 
